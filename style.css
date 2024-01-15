@@ -77,10 +77,6 @@ img {
     gap: 0.25rem;
 }
 
-.sec__h1 {
-    font-size: var(--H1-FS);
-}
-
 /* || GENERAL STYLES */
 html {
     scroll-behavior: smooth;
@@ -259,6 +255,11 @@ main {
     min-height: 90vh;
 }
 
+.home__h1 {
+    font-size: var(--H1-FS);
+    font-weight: bold;
+}
+
 .home__h2 {
     font-size: var(--H2-FS);
 }
@@ -377,7 +378,9 @@ main {
 .contact__form {
     padding: 1rem;
     margin: 1rem;
-    text-align: left;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
 
     border-radius: 10px;
     box-shadow: var(--BOXSHADOW);
@@ -417,8 +420,8 @@ main {
 }
 
 .contact__form--captcha {
-    transform:scale(0.75); 
-    -webkit-transform:scale(0.75);
+    transform:scale(0.8);
+    -webkit-transform:scale(0.8);
     transform-origin: center center;
     
     padding: 2px;
@@ -430,6 +433,7 @@ main {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    height: 2.25rem;
 }
 
 .contact__form--submit {
@@ -444,8 +448,8 @@ main {
     font-weight: 500;
 }
 
-.contact__form--submit:hover,
-.contact__form--submit:focus {
+.contact__form--buttons:hover,
+.contact__form--buttons:focus {
     cursor: pointer;
 }
 
@@ -483,5 +487,11 @@ footer {
 @media screen and (min-width: 768px) {
     .header__li a {
         width: auto;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .contact__form--captchaContainer {
+        display: none;
     }
 }
