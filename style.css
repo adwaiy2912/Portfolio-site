@@ -66,6 +66,10 @@ img {
     opacity: 0.4;
 }
 
+.hide {
+    color: transparent;
+}
+
 .section {
     display: flex;
     flex-flow: column nowrap;
@@ -265,6 +269,7 @@ main {
 }
 
 .home__p {
+    min-height: calc(1.5 * var(--P-FS));
     font-size: var(--P-FS);
     opacity: 0.5;
 }
@@ -288,11 +293,23 @@ main {
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
-.home__button:hover,
-.home__button:focus {
-    background-color: rgba(255, 255 , 255, 0.08);
+.home__button::after {
+    position: absolute;
+    content: '';
+    top: -100%;
+    left: 0;
+    background-color: whitesmoke;
+    height: 100%;
+    width: 100%;
+    transition: 0.5s;
+}
+
+.home__button:hover::after,
+.home__button:focus::after {
+    top: 100%;
 }
 
 .home__button--text,
@@ -426,33 +443,39 @@ main {
     
     padding: 2px;
     border-radius: 5px;
-    border: 2px outset #eee;
+    border: 2px solid #eee;
 }
 
-.contact__form--buttons {
+.contact__form--buttonContainer {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     height: 2.25rem;
 }
 
-.contact__form--submit {
-    width: 66%;
+.contact__form--button {
     padding: 5px;
     font-weight: 500;
+    color: #000;
+    background-color: white;
+    border: 2px solid #eee;
+    border-radius: 5px;
+}
+
+.contact__form--submit {
+    width: 66%;
 }
 
 .contact__form--reset {
     width: 33%;
-    padding: 5px;
-    font-weight: 500;
 }
 
-.contact__form--buttons:hover,
-.contact__form--buttons:focus {
-    cursor: pointer;
+.contact__form--submit:hover,
+.contact__form--reset:hover {
+    background-color: transparent;
+    color: whitesmoke;
+    transition: 0.4s;
 }
-
 
 footer {
     bottom: 0;
@@ -483,6 +506,10 @@ footer {
     height: auto;
 }
 
+.footer__icon:hover {
+    opacity: 0.7;
+    /* change color */
+}
 
 @media screen and (min-width: 768px) {
     .header__li a {
