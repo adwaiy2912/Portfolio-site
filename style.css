@@ -28,9 +28,10 @@ img {
 
     /* PADDING AND MARGIN */
     --HEAD-NAV-PAD: clamp(0px, 0.5vh, 0.3rem) 0rem;
+    --ABOUT-GAP: clamp(1rem, 5vw, 3rem);
     --SKILL-FIGCAP-PAD: clamp(0.6rem, 2vw, 1rem);
-    --FOOT-PAD: clamp(0.25rem, 3vw, 0.5rem) 0;
-    --FOOT-LI-MARGIN: clamp(0.1rem, 1vw, 0.3rem) clamp(0px, 3vw, 1.5rem);
+    --FOOT-PAD: clamp(0.5rem, 5vw, 1.5rem) 0;
+    --FOOT-LI-MARGIN: clamp(0px, 3vw, 1.5rem);
 
     /* BORDERS */
     --BOXSHADOW: 0 3px 10px var(--BORDERCOLOR);
@@ -53,7 +54,7 @@ img {
 }
 
 /* || UTILITY CLASSES */
-.offscreen {
+.offScreen {
     position: absolute;
     left: -10000px;
 }
@@ -68,6 +69,13 @@ img {
 
 .hide {
     color: transparent;
+}
+
+.main__sec .stopAnimation,
+.main__sec .stopAnimation::after,
+.main__sec .stopAnimation::before {
+    content: '';
+    animation: none;
 }
 
 .section {
@@ -248,7 +256,6 @@ header {
     transform: rotate(720deg);
 }
 
-
 main {
     flex-grow: 1;
     min-height: 100vh;
@@ -266,6 +273,22 @@ main {
 
 .home__h2 {
     font-size: var(--H2-FS);
+}
+
+.home__h1::after {
+    content: '|';
+    font-size: var(--H1-FS);
+    animation: blink-animation 1s step-end infinite;
+}
+.home__h2::after {
+    content: '|';
+    font-size: var(--H2-FS);
+    animation: blink-animation 1s step-end infinite;
+}
+  
+@keyframes blink-animation {
+    from, to { color: transparent }
+    50% { color: wheat }
 }
 
 .home__p {
@@ -301,7 +324,7 @@ main {
     content: '';
     top: -100%;
     left: 0;
-    background-color: whitesmoke;
+    background: linear-gradient(#fff, #ccc);
     height: 100%;
     width: 100%;
     transition: 0.5s;
@@ -326,6 +349,27 @@ main {
     background-repeat: no-repeat;
 }
 
+#about {
+}
+
+.about__container {
+    display: flex;
+    flex-flow: row-reverse wrap;
+    margin: 1rem;
+    gap: var(--ABOUT-GAP);
+    align-items: center;
+    justify-content: center;
+}
+
+.about__p {
+    font-size: var(--P-FS);
+}
+
+.about__photo {
+    width: clamp(200px, 40vw, 250px);
+    height: auto;
+    border-radius: 10%;
+}
 
 .skills__container {
     display: flex;
@@ -507,13 +551,16 @@ footer {
 }
 
 .footer__icon:hover {
-    opacity: 0.7;
+    transform: scale(1.1);
     /* change color */
 }
 
 @media screen and (min-width: 768px) {
     .header__li a {
         width: auto;
+    }
+    .about__p {
+        max-width: 50%;
     }
 }
 

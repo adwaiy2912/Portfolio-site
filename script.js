@@ -19,43 +19,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // typewriter effect to home section content
 document.addEventListener('DOMContentLoaded', () => {
-    const typewriter1 = document.querySelectorAll(".home__typewriter1");
-    const txtArr = Array.from(typewriter1).map((txt) => {
-        const textContent = txt.innerText;
-        txt.innerText = '';
+    const typewriter1 = document.querySelector(".home__typewriter1");
+    const typewriter1Items = document.querySelectorAll(".home__typewriter1--item");
+    const txtArr = Array.from(typewriter1Items).map((ele) => {
+        const textContent = ele.innerText;
+        ele.innerText = '';
         return textContent;
     });
 
-    let iSpeed = 100;
+    let iSpeed = 125;
     let iIdx = 0;
     let itxtLen = txtArr[0].length;
     let iTextPos = 0;
     let delta;
     
     const typewrite = async () => {
-        return new Promise((resolve) => {
-        typewriter1[iIdx].innerHTML = txtArr[iIdx].substring(0, iTextPos) + "|";
-        delta = Math.random() * 250;
+    return new Promise((resolve) => {
+        typewriter1Items[iIdx].classList.remove('stopAnimation');
+        typewriter1Items[iIdx].innerHTML = txtArr[iIdx].substring(0, iTextPos);
+        delta = Math.random() * 50;
 
         if (iTextPos++ === itxtLen) {
             iTextPos = 0;
             setTimeout(() => {
-                typewriter1[iIdx].innerHTML = txtArr[iIdx] + ".";
-                iIdx++;
-                if (iIdx !== txtArr.length) {
-                    itxtLen = txtArr[iIdx].length;
-                    setTimeout(() => { typewrite().then(resolve); }, 500);
-                } else {
-                    resolve();
-                }
-            }, 200 + delta);
+                typewriter1Items[iIdx].innerHTML = txtArr[iIdx] + ".";
+                setTimeout(() => {
+                    typewriter1Items[iIdx].classList.add('stopAnimation');
+                    iIdx++;
+                    if (iIdx !== txtArr.length) {
+                        itxtLen = txtArr[iIdx].length;
+                        typewrite().then(resolve);
+                    } else {
+                        resolve();
+                    }
+                }, 500 + delta);
+            }, 300 + delta); // control final char '.' insert delay
         } else {
-            setTimeout(() => { typewrite().then(resolve); }, iSpeed);
+            setTimeout(() => { typewrite().then(resolve); }, iSpeed + delta); // control typing speed
         }
     });
     };
     
+    setTimeout(() => {
     typewrite().then(() => {
+
     function TxtType (ele, txt) {
         this.ele = ele;
         this.txt = txt;
@@ -73,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             this.write = fullTxt.substring(0, this.write.length + 1);
         }
-        this.ele.innerHTML = '<span class="nowrap">'+this.write+'</span>';
+        this.ele.innerHTML = '<span class="wrap">'+this.write+'</span>';
 
         let that = this;
         let delta = 200 - Math.random() * 100;
@@ -83,14 +90,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (!this.isDeleting && this.write === fullTxt) {
-            setTimeout(() => {}, 1000);
-            this.isDeleting = true;
+            setTimeout(() => {
+                this.isDeleting = true;
+            }, 500);
         } else if (this.isDeleting && this.write === '') {
             this.isDeleting = false;
             this.loopNum++;
             delta = 500;
         }
-        setTimeout(() => { that.tick(); }, delta);
+        setTimeout(() => {
+            that.tick();
+        }, delta);
     };
 
     const typewriter2 = document.querySelectorAll('.home__typewriter2');
@@ -104,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         new TxtType(typewriter2[i], txtArr);
     }
     });
+    }, 2500); // add delay to typing -> for longer blinking animation
 });
 
 // add current year in the footer
@@ -116,7 +127,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // add reCAPTCHA check to form; set default state after submission; forward message to gmail
 const form = document.getElementById("contact__form");
-form.addEventListener('submit', () => {
+form.addEventListener('submit', (e) => {
+    console.log("1");
     e.preventDefault();
 
     const captchaResponse = grecaptcha.getResponse();
