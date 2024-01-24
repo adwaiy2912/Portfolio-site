@@ -22,9 +22,15 @@ img {
     --FORM-FS: clamp(1rem, 5vw, 1.3rem);
 
     /* COLORS */
-    --TEXTCOLOR: aliceblue;
+    --PRIMARY-COLOR: aliceblue;
+    --SECONDARY-COLOR: antiquewhite;
+    --COMPLEMENTARY-COLOR: black;
     --BGCOLOR: #333;
     --BORDERCOLOR: #444;
+    --CONTACT-BORDERCOLOR: aliceblue;
+
+    --HOME-BUT-TRANS-COLOR:  linear-gradient(#fff, #ccc);
+    --HOME-BUT-BGCOLOR: rgba(0, 0 , 0, 0.3);
 
     /* PADDING AND MARGIN */
     --HEAD-NAV-PAD: clamp(0px, 0.5vh, 0.3rem) 0rem;
@@ -35,6 +41,8 @@ img {
 
     /* BORDERS */
     --BOXSHADOW: 0 3px 10px var(--BORDERCOLOR);
+    --HOME-BUT-SHADOW: 0 3px 10px #000;
+    --CONTACT-BORDER: 2px outset var(--CONTACT-BORDERCOLOR);
 
     /* IMAGES */
     --BGIMG: url('img/bg-1.jpg');
@@ -43,11 +51,13 @@ img {
     --NAV-FS: clamp(0.8rem, 2vw, 1.2rem);
     --ICON-DIM: clamp(3px, 0.5vw, 5px);
     --LOGO-DIM: clamp(30px, 3vw, 40px);
+    --SHOW-HEADER: all 2.5s;
 
     /* MAIN */
-    --BUTTON-DIM: clamp(30px, 8vh, 70px);
+    --BUT-DIM: clamp(30px, 8vh, 70px);
     --IMG-DIM: clamp(75px, 15vw, 125px);
     --FORM-TEXTAREA-DIM: clamp(5rem, 20vh, 10rem);
+    --SHOW-BODY: all 3s ease-in;
 
     /* FOOTER */
     --FOOT-ICON-DIM: clamp(20px, 4vw, 30px);
@@ -69,6 +79,7 @@ img {
 
 .hide {
     color: transparent;
+    opacity: 0;
 }
 
 .main__sec .stopAnimation,
@@ -94,7 +105,7 @@ html {
     scroll-behavior: smooth;
     
     font-family: var(--FF);
-    color: var(--TEXTCOLOR);
+    color: var(--PRIMARY-COLOR);
 }
 
 body {
@@ -102,6 +113,7 @@ body {
     background-color: var(--BGCOLOR);
     display: grid;
     position: relative;
+    overflow: hidden;
 }
 
 body::before {
@@ -119,11 +131,27 @@ body::before {
 }
 
 
+.intro {
+    position: fixed;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    background-color: #111;
+}
+
+.intro__fade {
+    opacity: 0;
+    transition: var(--SHOW-BODY);
+    z-index: -10;
+}
+
+
 header {
-    top: 0;
+    top: -10%;
     position: fixed;
     width: 100%;
-    z-index: 1;
+    z-index: 5;
+    transition: var(--SHOW-HEADER);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
 }
@@ -151,7 +179,7 @@ header {
 .header__menu--icon,
 .header__menu--icon::before,
 .header__menu--icon::after {
-    background-color: wheat;
+    background-color: var(--SECONDARY-COLOR);
     width: calc(10 * var(--ICON-DIM));
     height: var(--ICON-DIM);
     border-radius: var(--ICON-DIM);
@@ -231,7 +259,7 @@ header {
 }
 
 .header__li a:any-link {
-    color: var(--TEXTCOLOR);
+    color: var(--PRIMARY-COLOR);
     font-weight: bold;
     text-decoration: none;
 }
@@ -263,7 +291,9 @@ main {
 }
 
 #home {
+    position: relative;
     min-height: 90vh;
+    z-index: 10;
 }
 
 .home__h1 {
@@ -288,7 +318,7 @@ main {
   
 @keyframes blink-animation {
     from, to { color: transparent }
-    50% { color: wheat }
+    50% { color: var(--SECONDARY-COLOR) }
 }
 
 .home__p {
@@ -298,25 +328,25 @@ main {
 }
 
 .home__button {
-    height: var(--BUTTON-DIM);
-    width: calc(3 * var(--BUTTON-DIM));
+    height: var(--BUT-DIM);
+    width: calc(3 * var(--BUT-DIM));
     margin-top: 1rem;
-    background-color: rgba(0, 0 , 0, 0.3);
+    background-color: var(--HOME-BUT-BGCOLOR);
     font-size: 0.9rem;
     font-weight: 500;
-    color: var(--TEXTCOLOR);
-    border: 2px solid var(--TEXTCOLOR);
+    color: var(--PRIMARY-COLOR);
+    border: 2px solid var(--PRIMARY-COLOR);
     border-radius: 4px;
-    box-shadow: 0 3px 10px #000;
-
+    box-shadow: var(--HOME-BUT-SHADOW);
+    
     text-decoration: none;
     outline: none;
     overflow: hidden;
-    cursor: pointer;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    transition: var(--SHOW-BODY);
 }
 
 .home__button::after {
@@ -324,7 +354,7 @@ main {
     content: '';
     top: -100%;
     left: 0;
-    background: linear-gradient(#fff, #ccc);
+    background: var(--HOME-BUT-TRANS-COLOR);
     height: 100%;
     width: 100%;
     transition: 0.5s;
@@ -451,7 +481,7 @@ main {
     line-height: 2.5em;
     font-size: var(--FORM-FS);
     font-weight: bold;
-    color: antiquewhite;
+    color: var(--SECONDARY-COLOR);
 }
 
 .contact__form textarea {
@@ -459,7 +489,7 @@ main {
     height: var(--FORM-TEXTAREA-DIM);
     padding: 5px;
     border-radius: 5px;
-    border: 2px outset #eee;
+    border: var(--CONTACT-BORDER);
 }
 
 .contact__form--div {
@@ -470,7 +500,7 @@ main {
     width: 100%;
     padding: 5px;
     border-radius: 5px;
-    border: 2px outset #eee;
+    border: var(--CONTACT-BORDER);
 }
 
 .contact__form--captchaContainer {
@@ -487,7 +517,7 @@ main {
     
     padding: 2px;
     border-radius: 5px;
-    border: 2px solid #eee;
+    border: var(--CONTACT-BORDER);
 }
 
 .contact__form--buttonContainer {
@@ -500,9 +530,9 @@ main {
 .contact__form--button {
     padding: 5px;
     font-weight: 500;
-    color: #000;
-    background-color: white;
-    border: 2px solid #eee;
+    color: var(--COMPLEMENTARY-COLOR);
+    background-color: var(--PRIMARY-COLOR);
+    border: var(--CONTACT-BORDER);
     border-radius: 5px;
 }
 
@@ -517,14 +547,14 @@ main {
 .contact__form--submit:hover,
 .contact__form--reset:hover {
     background-color: transparent;
-    color: whitesmoke;
+    color: var(--PRIMARY-COLOR);
     transition: 0.4s;
 }
 
 footer {
     bottom: 0;
     width: 100%;
-    z-index: 1;
+    z-index: 5;
     text-align: center;
     padding: var(--FOOT-PAD);
 }
@@ -552,7 +582,10 @@ footer {
 
 .footer__icon:hover {
     transform: scale(1.1);
-    /* change color */
+}
+
+.footer__icon :nth-child(1):hover {
+    color: blue;
 }
 
 @media screen and (min-width: 768px) {

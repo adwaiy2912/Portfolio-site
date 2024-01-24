@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const typewriter1 = document.querySelector(".home__typewriter1");
     const typewriter1Items = document.querySelectorAll(".home__typewriter1--item");
+
     const txtArr = Array.from(typewriter1Items).map((ele) => {
         const textContent = ele.innerText;
         ele.innerText = '';
@@ -43,17 +44,18 @@ document.addEventListener('DOMContentLoaded', () => {
             iTextPos = 0;
             setTimeout(() => {
                 typewriter1Items[iIdx].innerHTML = txtArr[iIdx] + ".";
-                setTimeout(() => {
-                    typewriter1Items[iIdx].classList.add('stopAnimation');
-                    iIdx++;
-                    if (iIdx !== txtArr.length) {
-                        itxtLen = txtArr[iIdx].length;
-                        typewrite().then(resolve);
-                    } else {
-                        resolve();
-                    }
-                }, 500 + delta);
             }, 300 + delta); // control final char '.' insert delay
+
+            setTimeout(() => {
+                typewriter1Items[iIdx].classList.add('stopAnimation');
+                iIdx++;
+                if (iIdx !== txtArr.length) {
+                    itxtLen = txtArr[iIdx].length;
+                    typewrite().then(resolve);
+                } else {
+                    resolve();
+                }
+            }, 500 + delta);
         } else {
             setTimeout(() => { typewrite().then(resolve); }, iSpeed + delta); // control typing speed
         }
@@ -62,6 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     setTimeout(() => {
     typewrite().then(() => {
+
+    setTimeout(() => {    
+    introFadeChanges();
 
     function TxtType (ele, txt) {
         this.ele = ele;
@@ -113,8 +118,32 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < typewriter2.length; i++) {
         new TxtType(typewriter2[i], txtArr);
     }
+    }, 1000); // add delay to home__p & intro__fade
+
     });
     }, 2500); // add delay to typing -> for longer blinking animation
+
+    const introFadeChanges = () => {
+        const header = document.getElementById('mainHeader');
+        const intro = document.querySelector(".intro");
+        const home = document.getElementById("home");
+        const homeButton = document.querySelector(".home__button");
+
+        intro.classList.add("intro__fade");
+        homeButton.classList.remove("hide");
+        header.style.top = '0';
+
+        // get showBody transition time and apply to home for correct element stack
+        const showBodyTime = getComputedStyle(document.documentElement).getPropertyValue('--SHOW-BODY');
+        const timeRegex = /(\d+(?:\.\d+)?)[sms]/;
+        const match = showBodyTime.match(timeRegex);
+        const timeValue = parseFloat(match[1]);
+
+        setTimeout(() => {
+            home.style.zIndex = 0;
+            document.body.style.overflow = 'auto';
+        }, timeValue * 900);
+    }
 });
 
 // add current year in the footer
@@ -128,11 +157,12 @@ document.addEventListener('DOMContentLoaded', () => {
 // add reCAPTCHA check to form; set default state after submission; forward message to gmail
 const form = document.getElementById("contact__form");
 form.addEventListener('submit', (e) => {
-    console.log("1");
     e.preventDefault();
+    console.log(document.querySelector(".contact__form--captchaContainer").style)
+    console.log(document.querySelector(".contact__form--captchaContainer").style.display)
 
     const captchaResponse = grecaptcha.getResponse();
-    if (!captchaResponse.length > 0) {
+    if (!captchaResponse.length > 0 && document.querySelector(".contact__form--captchaContainer").style.display !== 'none') {
         throw new Error("Captcha not complete");
     }
 
@@ -152,6 +182,7 @@ form.addEventListener('submit', (e) => {
         document.getElementById("email").value = "";
         document.getElementById("message").value = "";
         grecaptcha.reset();
+        console.log("Message sent");
     })
     .catch((err) => console.log(err));
 });
