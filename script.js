@@ -158,8 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
 const form = document.getElementById("contact__form");
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log(document.querySelector(".contact__form--captchaContainer").style)
-    console.log(document.querySelector(".contact__form--captchaContainer").style.display)
 
     const captchaResponse = grecaptcha.getResponse();
     if (!captchaResponse.length > 0 && document.querySelector(".contact__form--captchaContainer").style.display !== 'none') {
