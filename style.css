@@ -17,9 +17,9 @@ img {
 :root {
     /* FONTS */
     --FF: 'Courier New', Courier, monospace;
-    --HEAD-FS: clamp(1rem, 5vw, 2rem);
-    --MAIN-FS: clamp(0.7rem, 2vw, 1rem);
-    --INTRO-FS: clamp(1.5rem, 10vw, 4rem);
+    --HEAD-FS: clamp(1.25rem, 5vw, 2.5rem);
+    --MAIN-FS: clamp(0.9rem, 2vw, 1.1rem);
+    --INTRO-FS: clamp(1.75rem, 10vw, 4.25rem);
 
     /* COLORS */
     --MAIN1-COLOR: #FFF;
@@ -59,7 +59,7 @@ img {
     --SHOW-HEADER: all 2.5s;
 
     /* MAIN */
-    --BUT-DIM: clamp(40px, 10vw, 60px);
+    --BUT-DIM: clamp(45px, 10vw, 65px);
     --HOME-ICON-DIM: clamp(25px, 6vw, 35px);
     --ABOUT-PHOTO: clamp(200px, 40vw, 250px);
     --IMG-DIM: clamp(75px, 15vw, 125px);
@@ -67,7 +67,7 @@ img {
     --SHOW-BODY: all 3s ease-in;
 
     /* FOOTER */
-    --FOOT-ICON-DIM: clamp(25px, 4vw, 35px);
+    --FOOT-ICON-DIM: clamp(30px, 4vw, 40px);
 }
 
 /* || UTILITY CLASSES */
@@ -240,19 +240,19 @@ header {
     transform: translateY(calc(2 * var(--ICON-DIM)));
 }
 
-:is(.header__menu--button:hover, .header__menu--button:focus-within) .header__menu--icon {
+.header__menu--button:is(:hover, :focus) .header__menu--icon {
     background-color: transparent;
 }
 
-:is(.header__menu--button:hover, .header__menu--button:focus-within) .header__menu--icon::before {
+.header__menu--button:is(:hover, :focus) .header__menu--icon::before {
     transform: rotate(45deg);
 }
 
-:is(.header__menu--button:hover, .header__menu--button:focus-within) .header__menu--icon::after {
+.header__menu--button:is(:hover, :focus) .header__menu--icon::after {
     transform: rotate(-45deg);
 }
 
-:is(.header__menu--button:hover, .header__menu--button:focus-within) .header__nav {
+.header__menu--button:is(:hover, :focus) .header__nav {
     display: block;
 }
 
@@ -613,6 +613,7 @@ main {
 .contact__form--button {
     padding: 5px;
     font-size: var(--MAIN-FS);
+    font-weight: 500;
     color: var(--COMPLEMENTARY-COLOR);
     background-color: var(--MAIN1-COLOR);
     border: var(--CONTACT-BORDER);
@@ -683,7 +684,6 @@ footer {
     background: linear-gradient(#000, #827f7b, #d68a20);
 }
 .footer__ul li:nth-child(4) .footer__icon:hover {
-    /* background: linear-gradient(#fff, red); */
     background: linear-gradient(#bbb, purple);
 }
 .footer__ul li:nth-child(5) .footer__icon:hover {

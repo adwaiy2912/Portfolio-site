@@ -170,17 +170,42 @@ form.addEventListener('submit', (e) => {
         message: document.getElementById("message").value
     };
 
-    const serviceID = "service_7uoc47m";
-    const templateID = "template_2d9if46";
+    const verifyRecaptcha = (response) => {
+        return new Promise((resolve, reject) => {
+            const url = '/recaptcha_verify.php';
+    
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 'g-recaptcha-response': response }),
+            })
+            .then(response => response.json())
+            .then(data => resolve(data))
+            .catch(error => reject(error));
+        });
+    }
 
-    emailjs
-    .send(serviceID, templateID, paramaters)
-    .then((res) => {
-        document.getElementById("name").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("message").value = "";
-        grecaptcha.reset();
-        console.log("Message sent");
+    verifyRecaptcha(captchaResponse)
+    .then((recaptchaResult) => {
+        if (recaptchaResult.success) {
+            const serviceID = "service_7uoc47m";
+            const templateID = "template_2d9if46";
+
+            emailjs.send(serviceID, templateID, parameters)
+                .then((res) => {
+                    // Clear form fields and reset reCAPTCHA
+                    document.getElementById("name").value = "";
+                    document.getElementById("email").value = "";
+                    document.getElementById("message").value = "";
+                    grecaptcha.reset();
+                    console.log("Message sent");
+                })
+                .catch((err) => console.log(err));
+        } else {
+            console.log('reCAPTCHA verification failed.');
+        }
     })
     .catch((err) => console.log(err));
 });
