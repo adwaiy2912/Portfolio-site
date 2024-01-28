@@ -6,6 +6,10 @@ const port = process.env.port || 3000;
 app.use(cors());
 app.use(express.urlencoded({ extended: false}));
 
+app.get('/', (req, res) => {
+    res.send('Hello, world!');
+});
+
 app.post('/upload', (req, res) => {
     const params = new URLSearchParams({
         secret: '6LcdDlApAAAAANYKBxJfKhpkkS-M-2NhxeXuGF0a',
