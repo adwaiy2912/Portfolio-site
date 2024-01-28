@@ -198,8 +198,9 @@ form.addEventListener('submit', (e) => {
 
     const fd = new FormData(e.target);
     const params = new URLSearchParams(fd);
+    const url = 'https://slug-cummerbund.cyclic.app';
 
-    fetch('https://slug-cummerbund.cyclic.app', {
+    fetch(url, {
         method: "POST",
         body: params,
     })
