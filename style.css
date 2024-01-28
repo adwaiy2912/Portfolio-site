@@ -53,7 +53,6 @@ img {
     --CURSORIMG: url('img/cursor.png');
 
     /* HEADER */
-    --NAV-FS: clamp(0.8rem, 2vw, 1.2rem);
     --ICON-DIM: clamp(3px, 0.5vw, 5px);
     --LOGO-DIM: clamp(30px, 3vw, 40px);
     --SHOW-HEADER: all 2.5s;
@@ -62,7 +61,7 @@ img {
     --BUT-DIM: clamp(45px, 10vw, 65px);
     --HOME-ICON-DIM: clamp(25px, 6vw, 35px);
     --ABOUT-PHOTO: clamp(200px, 40vw, 250px);
-    --IMG-DIM: clamp(75px, 15vw, 125px);
+    --IMG-DIM: clamp(100px, 15vw, 130px);
     --FORM-TEXTAREA-DIM: clamp(5rem, 20vh, 10rem);
     --SHOW-BODY: all 3s ease-in;
 
@@ -90,7 +89,7 @@ img {
 }
 
 .whiteShade {
-    background-color: rgba(255, 255, 255, 0.02);
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 .blackShade {
@@ -160,8 +159,8 @@ body::before {
     position: fixed;
     inset: 0;
     z-index: -5;
-    filter: blur(10%);
-    -webkit-filter: blur(10px);
+    /* filter: blur(10%);
+    -webkit-filter: blur(10px); */
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -205,6 +204,7 @@ header {
 }
 
 .header__menu--button {
+    font-family: inherit;
     background-color: transparent;
     border: none;
     width: calc(15 * var(--ICON-DIM));
@@ -233,11 +233,11 @@ header {
 }
 
 .header__menu--icon::before {
-    transform: translateY(calc(-2 * var(--ICON-DIM)));
+    transform: translate(calc(-5 * var(--ICON-DIM)), calc(-2 * var(--ICON-DIM)));
 }
 
 .header__menu--icon::after {
-    transform: translateY(calc(2 * var(--ICON-DIM)));
+    transform: translate(calc(-5 * var(--ICON-DIM)), calc(2 * var(--ICON-DIM)));
 }
 
 .header__menu--button:is(:hover, :focus) .header__menu--icon {
@@ -245,11 +245,11 @@ header {
 }
 
 .header__menu--button:is(:hover, :focus) .header__menu--icon::before {
-    transform: rotate(45deg);
+    transform: translateX(calc(-5 * var(--ICON-DIM))) rotate(45deg);
 }
 
 .header__menu--button:is(:hover, :focus) .header__menu--icon::after {
-    transform: rotate(-45deg);
+    transform: translateX(calc(-5 * var(--ICON-DIM))) rotate(-45deg);
 }
 
 .header__menu--button:is(:hover, :focus) .header__nav {
@@ -295,7 +295,7 @@ header {
     margin-right: 2rem;
     text-align: center;
     width: 100%;
-    font-size: var(--NAV-FS);
+    font-size: var(--MAIN-FS);
 }
 
 .header__li a:any-link {
@@ -420,7 +420,7 @@ main {
 
 .about__container {
     display: flex;
-    flex-flow: row-reverse wrap;
+    flex-flow: row wrap;
     margin: 1rem;
     gap: var(--ABOUT-GAP);
     align-items: center;
@@ -430,6 +430,7 @@ main {
 .about__p {
     font-size: var(--MAIN-FS);
     line-height: 1.5em;
+    text-align: left;
 }
 
 .about__photo--container {
@@ -482,7 +483,7 @@ main {
     justify-content: center;
 }
 
-.skills__img {
+.skills__fig {
     width: 100%;
     max-width: var(--IMG-DIM);
     height: auto;
@@ -493,12 +494,16 @@ main {
     transition: 0.5s all;
 }
 
-.skills__img:hover {
+.skills__fig:hover {
     transform: scale(1.05);
     box-shadow: var(--HOVER-BOXSHADOW);
 }
 
-.skills__img figcaption {
+.skills__fig img {
+    display:inline;
+}
+
+.skills__fig figcaption {
     padding-top: var(--SKILL-FIGCAP-PAD);
     font-size: var(--MAIN-FS);
     font-weight: bold;
@@ -511,8 +516,12 @@ main {
     justify-content: center;
 }
 
+.projects__container a:any-link {
+    text-decoration: none;
+}
+
 .projects__card {
-    max-width: 300px;
+    max-width: 500px;
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -545,6 +554,7 @@ main {
 .projects__details {
     margin-top: 0.75em;
     font-size: var(--MAIN-FS);
+    color: var(--MAIN1-COLOR);
     line-height: 1.4em;
 }
 
@@ -700,8 +710,10 @@ footer {
     }
 }
 
-@media screen and (max-width: 400px) {
-    .contact__form--captchaContainer {
-        display: none;
+@media (hover : none) {
+    :root {
+        --ICON-DIM: clamp(4px, 0.5vw, 6px);
+        --LOGO-DIM: clamp(35px, 3vw, 45px);
+        --FOOT-ICON-DIM: clamp(33px, 4vw, 45px);
     }
 }

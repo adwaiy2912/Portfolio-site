@@ -154,58 +154,80 @@ document.addEventListener('DOMContentLoaded', () => {
     year.textContent = thisYear;
 });
 
+/*
+const toggleMenu = () => {
+    // only for mobile screen
+    if (!window.matchMedia('(hover: none)').matches) { return; }
+
+    const headerButton = document.querySelector(".header__menu--button");
+    const headerNav = document.querySelector(".header__nav");
+    const headerIcon = document.querySelector(".header__menu--icon");
+
+    if (headerButton.classList.contains('active')) {
+        // If menu is currently open, close it
+        headerNav.style.display = 'none';
+        headerIcon.style.transform = '';
+        headerButton.classList.remove('active');
+    } else {
+        // If menu is currently closed, open it
+        headerNav.style.display = 'block';
+        headerIcon.style.transform = 'transparent';
+        headerButton.classList.add('active');
+    }
+}
+
+const checkToggle = () => {
+    if (!window.matchMedia('(hover: none)').matches) { return; }
+
+    const headerButton = document.querySelector(".header__menu--button");
+    const headerNav = document.querySelector(".header__nav");
+    const headerIcon = document.querySelector(".header__menu--icon");
+
+    if (headerButton.classList.contains('active')) {
+        headerNav.style.display = 'none';
+        headerIcon.style.transform = '';
+        headerButton.classList.remove('active');
+    }
+}
+*/
+
 // add reCAPTCHA check to form; set default state after submission; forward message to gmail
 const form = document.getElementById("contact__form");
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const captchaResponse = grecaptcha.getResponse();
-    if (!captchaResponse.length > 0 && document.querySelector(".contact__form--captchaContainer").style.display !== 'none') {
-        throw new Error("Captcha not complete");
-    }
+    const fd = new FormData(e.target);
+    const params = new URLSearchParams(fd);
 
-    const paramaters = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        message: document.getElementById("message").value
-    };
-
-    const verifyRecaptcha = (response) => {
-        return new Promise((resolve, reject) => {
-            const url = '/recaptcha_verify.php';
-    
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ 'g-recaptcha-response': response }),
-            })
-            .then(response => response.json())
-            .then(data => resolve(data))
-            .catch(error => reject(error));
-        });
-    }
-
-    verifyRecaptcha(captchaResponse)
-    .then((recaptchaResult) => {
-        if (recaptchaResult.success) {
+    fetch('http://localhost:3000/upload', {
+        method: "POST",
+        body: params,
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.captchaSuccess) {
             const serviceID = "service_7uoc47m";
             const templateID = "template_2d9if46";
+            const parameters = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                message: document.getElementById("message").value
+            };
 
             emailjs.send(serviceID, templateID, parameters)
-                .then((res) => {
-                    // Clear form fields and reset reCAPTCHA
-                    document.getElementById("name").value = "";
-                    document.getElementById("email").value = "";
-                    document.getElementById("message").value = "";
-                    grecaptcha.reset();
-                    console.log("Message sent");
-                })
-                .catch((err) => console.log(err));
+            .then((res) => {
+                // Clear form fields and reset reCAPTCHA
+                document.getElementById("name").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("message").value = "";
+                grecaptcha.reset();
+
+                alert("Message sent successfully!");
+            })
+            .catch((err) => alert(err));
         } else {
-            console.log('reCAPTCHA verification failed.');
+            alert("CAPTCHA incomplete!");
         }
     })
-    .catch((err) => console.log(err));
+    .catch((err) => alert(err));
 });
