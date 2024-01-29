@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return textContent;
     });
 
-    let iSpeed = 125;
+    let iSpeed = 75;
     let iIdx = 0;
     let itxtLen = txtArr[0].length;
     let iTextPos = 0;
@@ -38,13 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
     return new Promise((resolve) => {
         typewriter1Items[iIdx].classList.remove('stopAnimation');
         typewriter1Items[iIdx].innerHTML = txtArr[iIdx].substring(0, iTextPos);
-        delta = Math.random() * 50;
+        delta = Math.random() * 30;
 
         if (iTextPos++ === itxtLen) {
             iTextPos = 0;
             setTimeout(() => {
                 typewriter1Items[iIdx].innerHTML = txtArr[iIdx] + ".";
-            }, 300 + delta); // control final char '.' insert delay
+            }, 120 + delta); // control final char '.' insert delay
 
             setTimeout(() => {
                 typewriter1Items[iIdx].classList.add('stopAnimation');
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     resolve();
                 }
-            }, 500 + delta);
+            }, 350 + delta);
         } else {
             setTimeout(() => { typewrite().then(resolve); }, iSpeed + delta); // control typing speed
         }
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         this.ele.innerHTML = '<span class="wrap">'+this.write+'</span>';
 
         let that = this;
-        let delta = 200 - Math.random() * 100;
+        let delta = 100 - Math.random() * 50;
 
         if (this.isDeleting) {
             delta /= 2;
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!this.isDeleting && this.write === fullTxt) {
             setTimeout(() => {
                 this.isDeleting = true;
-            }, 500);
+            }, 350);
         } else if (this.isDeleting && this.write === '') {
             this.isDeleting = false;
             this.loopNum++;
@@ -118,10 +118,10 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < typewriter2.length; i++) {
         new TxtType(typewriter2[i], txtArr);
     }
-    }, 1000); // add delay to home__p & intro__fade
+    }, 500); // add delay to home__p & intro__fade
 
     });
-    }, 2500); // add delay to typing -> for longer blinking animation
+    }, 2000); // add delay to typing -> for longer blinking animation
 
     const introFadeChanges = () => {
         const header = document.getElementById('mainHeader');
@@ -129,9 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const home = document.getElementById("home");
         const homeButton = document.querySelector(".home__button");
 
+        header.style.top = '0';
         intro.classList.add("intro__fade");
         homeButton.classList.remove("hide");
-        header.style.top = '0';
 
         // get showBody transition time and apply to home for correct element stack
         const showBodyTime = getComputedStyle(document.documentElement).getPropertyValue('--SHOW-BODY');
