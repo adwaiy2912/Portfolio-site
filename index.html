@@ -1,232 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eat. Sleep. Code.</title>
-    <link rel="icon" href="img/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
-    <script async defer src="https://www.google.com/recaptcha/api.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script> (function(){emailjs.init("G4RQ34XNKbwRuyGRK");})();</script>
-</head>
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Eat. Sleep. Code.</title>
+      <link rel="icon" href="img/logo.png" type="image/x-icon" />
+      <link rel="stylesheet" href="style.css" />
+      <script defer src="script.js"></script>
+      <script
+         async
+         defer
+         src="https://www.google.com/recaptcha/api.js"
+      ></script>
+      <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+      <script>
+         (function () {
+            emailjs.init("G4RQ34XNKbwRuyGRK");
+         })();
+      </script>
+   </head>
 
-<body class="no-scrollbar" >
-    <div class="intro"></div>
+   <body class="no-scrollbar">
+      <div class="intro"></div>
+      <div id="bg"></div>
 
-    <header class="blurBg" id="mainHeader">
-        <div class="header__titleLine">
+      <header class="blurBg" id="mainHeader">
+         <div class="header__titleLine">
             <a class="header__a" href="/">
-                <img class="header__logo" src="img/logo.png" alt="Home" height="30" width="30">
+               <img
+                  class="header__logo"
+                  src="img/logo.png"
+                  alt="Home"
+                  height="30"
+                  width="30"
+               />
             </a>
 
-            <h1 class="header__title gradientColor">
-                Eat. Sleep. Code.
-            </h1>
+            <h1 class="header__title gradientColor">Eat. Sleep. Code.</h1>
 
             <button class="header__menu--button">
-                <input type="checkbox" id="menuToggle" class="header__menu--toggle">
-                <div  class="header__menu--icon"></div>
-                <nav class="header__nav">
-                    <ul class="header__ul">
-                        <li class="header__li">
+               <input
+                  type="checkbox"
+                  id="menuToggle"
+                  class="header__menu--toggle"
+               />
+               <div class="header__menu--icon"></div>
+               <nav class="header__nav">
+                  <ul class="header__ul">
+                     <li class="header__li">
                         <a href="#home">Home</a>
-                        </li>
-                        <li class="header__li">
+                     </li>
+                     <li class="header__li">
                         <a href="#about">About</a>
-                        </li>
-                        <li class="header__li">
-                            <a href="#skills">Skills</a>
-                        </li>
-                        <li class="header__li">
-                            <a href="#projects">Projects</a>
-                        </li>
-                        <li class="header__li">
-                            <a href="#contact">Contact</a>
-                        </li>
-                    </ul>
-                </nav>
+                     </li>
+                     <li class="header__li">
+                        <a href="#skills">Skills</a>
+                     </li>
+                     <li class="header__li">
+                        <a href="#projects">Projects</a>
+                     </li>
+                     <li class="header__li">
+                        <a href="#contact">Contact</a>
+                     </li>
+                  </ul>
+               </nav>
             </button>
-        </div>
-    </header>
+         </div>
+      </header>
 
-    <main id="mainContent">
-        <section class="main__sec section" id="home">
+      <main id="mainContent">
+         <section class="main__sec section" id="home">
             <div class="home__typewriter1">
-                <h1 class="home__h1 home__typewriter1--item">Hello World</h1>
-                <h2 class="home__h2 home__typewriter1--item stopAnimation">I'm Adwaiy Singh</h2>
+               <h1 class="home__h1 home__typewriter1--item">Hello World</h1>
+               <h2 class="home__h2 home__typewriter1--item stopAnimation">
+                  I'm Adwaiy Singh
+               </h2>
             </div>
             <p class="home__p home__typewriter2">
-                <span class="hide home__typewriter2--item">WEB DEVELOPER</span>
-                <span class="hide home__typewriter2--item">CODING ENTHUSIAST</span>
-                <span class="hide home__typewriter2--item">UI/UX DESIGNER</span>
+               <span class="hide home__typewriter2--item">WEB DEVELOPER</span>
+               <span class="hide home__typewriter2--item"
+                  >CODING ENTHUSIAST</span
+               >
+               <span class="hide home__typewriter2--item">UI/UX DESIGNER</span>
             </p>
             <div class="home__button blackShade nowrap hide">
-                <p class="home__button--text">
-                    Resume
-                </p>
-                <img src="img/downloads.png" alt="Download" width="20" height="20" class="home__button--icon">
+               <p class="home__button--text">Resume</p>
+               <img
+                  src="img/downloads.png"
+                  alt="Download"
+                  width="20"
+                  height="20"
+                  class="home__button--icon"
+               />
             </div>
-        </section>
+         </section>
 
-        <section class="main__sec section" id="about">
-            <h1 class="sec__h1">
-                About Me
-            </h1>
+         <section class="main__sec section" id="about">
+            <h1 class="sec__h1">About Me</h1>
             <div class="about__container">
-                <!-- <div class="about__photo--container">
+               <!-- <div class="about__photo--container">
                     <div class="about__photo--animate"></div> -->
-                    <img src="img/photo.png" alt="Personal photo" width="255" height="345" class="about__photo">
-                <!-- </div> -->
-                <p class="about__p">
-                    I am a Data Science Engineering student at Manipal Institute of Technology, driven by a passion to contribute to the world and assist others. 
-                    As a web developer, I specialize in crafting online experiences which emphasize both aesthetics and functionality. My expertise extends to web design, focusing on creating beautiful and user-friendly UI/UX interfaces. 
-                    I also actively solve coding problems and partcipate in multiple competitions on platforms like LeetCode, GeekForGeeks, and HackerRank, refining my problem-solving skills.
-                </p>
+               <img
+                  src="img/photo.png"
+                  alt="Personal photo"
+                  width="255"
+                  height="345"
+                  class="about__photo"
+               />
+               <!-- </div> -->
+               <p class="about__p">
+                  I am a Data Science Engineering student at Manipal Institute
+                  of Technology, driven by a passion to contribute to the world
+                  and assist others. As a web developer, I specialize in
+                  crafting online experiences which emphasize both aesthetics
+                  and functionality. My expertise extends to web design,
+                  focusing on creating beautiful and user-friendly UI/UX
+                  interfaces. I also actively solve coding problems and
+                  partcipate in multiple competitions on platforms like
+                  LeetCode, GeekForGeeks, and HackerRank, refining my
+                  problem-solving skills.
+               </p>
             </div>
-        </section>
+         </section>
 
-        <section class="main__sec section" id="skills">
-            <h1 class="sec__h1">
-                My Skills
-            </h1>
+         <section class="main__sec section" id="skills">
+            <h1 class="sec__h1">My Skills</h1>
             <div class="skills__container">
-                <figure class="skills__fig whiteShade">
-                    <img src="img/html.png" alt="HTML" height="100" width="100">
-                    <figcaption>HTML5</figcaption>
-                </figure>
-                <figure class="skills__fig whiteShade">
-                    <img src="img/css.png" alt="CSS" height="100" width="100">
-                    <figcaption>CSS3</figcaption>
-                </figure>
-                <figure class="skills__fig whiteShade">
-                    <img src="img/js.png" alt="JS" height="100" width="100">
-                    <figcaption>Java Script</figcaption>
-                </figure>
-                <figure class="skills__fig whiteShade">
-                    <img src="img/react.png" alt="React" height="100" width="100">
-                    <figcaption>React JS</figcaption>
-                </figure>
-                <figure class="skills__fig whiteShade">
-                    <img src="img/git.png" alt="HTML" height="100" width="100">
-                    <figcaption>Git</figcaption>
-                </figure>
-                <figure class="skills__fig whiteShade">
-                    <img src="img/java.png" alt="HTML" height="100" width="100">
-                    <figcaption>Java</figcaption>
-                </figure>
+               <figure class="skills__fig whiteShade">
+                  <img src="img/html.png" alt="HTML" height="100" width="100" />
+                  <figcaption>HTML5</figcaption>
+               </figure>
+               <figure class="skills__fig whiteShade">
+                  <img src="img/css.png" alt="CSS" height="100" width="100" />
+                  <figcaption>CSS3</figcaption>
+               </figure>
+               <figure class="skills__fig whiteShade">
+                  <img src="img/js.png" alt="JS" height="100" width="100" />
+                  <figcaption>Java Script</figcaption>
+               </figure>
+               <figure class="skills__fig whiteShade">
+                  <img
+                     src="img/react.png"
+                     alt="React"
+                     height="100"
+                     width="100"
+                  />
+                  <figcaption>React JS</figcaption>
+               </figure>
+               <figure class="skills__fig whiteShade">
+                  <img src="img/git.png" alt="HTML" height="100" width="100" />
+                  <figcaption>Git</figcaption>
+               </figure>
+               <figure class="skills__fig whiteShade">
+                  <img src="img/java.png" alt="HTML" height="100" width="100" />
+                  <figcaption>Java</figcaption>
+               </figure>
             </div>
-        </section>
+         </section>
 
-        <section class="main__sec section" id="projects">
-            <h1 class="sec__h1">
-                My Projects
-            </h1>
+         <section class="main__sec section" id="projects">
+            <h1 class="sec__h1">My Projects</h1>
             <div class="projects__container">
-                <a href="https://github.com/adwaiy2912/Java-DSA" target="_blank">
-                    <div class="projects__card whiteShade">
-                        <img class="projects__img" src="img/project_JavaDSA.png" alt="Project image" height="200" width="300">
-                        <h2 class="projects__title">
-                            Java DSA
-                        </h2>
-                        <p class="projects__details">
-                            A comprehensive collection of Java source code covering a wide range of topics, from fundamental data structures like arrays, linked lists, stacks, and queues to advanced algorithms such as graph traversal, and dynamic programming. Whether you're a beginner looking to grasp the basics or an experienced programmer seeking to sharpen your skills, this repository has something for everyone.
-                        </p>
-                    </div>
-                </a>
-                <a href="https://github.com/adwaiy2912/entranceTest-javaSwing" target="_blank">
-                    <div class="projects__card whiteShade">
-                        <img class="projects__img" src="img/project_Test.png" alt="Project image" height="200" width="300">
-                        <h2 class="projects__title">
-                            Java GUI
-                        </h2>
-                        <p class="projects__details">
-                            My Java Swing project recreates an entrance exam with a user-friendly GUI. Its intuitive design streamlines login, easy access to exam content, and clear result viewing. The GUI prioritizes simplicity, allowing candidates to focus on the exam without complexity.
-                        </p>
-                    </div>
-                </a>
-                <a href="https://github.com/adwaiy2912/ASTER" target="_blank">
-                    <div class="projects__card whiteShade">
-                        <img class="projects__img" src="img/project_ASTER.png" alt="Project image" height="200" width="300">
-                        <h2 class="projects__title">
-                            ASTER
-                        </h2>
-                        <p class="projects__details">
-                            This menu-driven inventory management system, named ASTER, made using Python and mySQL. It is designed for ease of use by individuals unfamiliar with inventory management. It streamlines essential tasks, particularly for businesses like bakeries, enabling swift and efficient operations.
-                        </p>
-                    </div>
-                </a>
+               <a href="https://github.com/adwaiy2912/Java-DSA" target="_blank">
+                  <div class="projects__card whiteShade">
+                     <img
+                        class="projects__img"
+                        src="img/project_JavaDSA.png"
+                        alt="Project image"
+                        height="200"
+                        width="300"
+                     />
+                     <h2 class="projects__title">Java DSA</h2>
+                     <p class="projects__details">
+                        A comprehensive collection of Java source code covering
+                        a wide range of topics, from fundamental data structures
+                        like arrays, linked lists, stacks, and queues to
+                        advanced algorithms such as graph traversal, and dynamic
+                        programming. Whether you're a beginner looking to grasp
+                        the basics or an experienced programmer seeking to
+                        sharpen your skills, this repository has something for
+                        everyone.
+                     </p>
+                  </div>
+               </a>
+               <a
+                  href="https://github.com/adwaiy2912/entranceTest-javaSwing"
+                  target="_blank"
+               >
+                  <div class="projects__card whiteShade">
+                     <img
+                        class="projects__img"
+                        src="img/project_Test.png"
+                        alt="Project image"
+                        height="200"
+                        width="300"
+                     />
+                     <h2 class="projects__title">Java GUI</h2>
+                     <p class="projects__details">
+                        My Java Swing project recreates an entrance exam with a
+                        user-friendly GUI. Its intuitive design streamlines
+                        login, easy access to exam content, and clear result
+                        viewing. The GUI prioritizes simplicity, allowing
+                        candidates to focus on the exam without complexity.
+                     </p>
+                  </div>
+               </a>
+               <a href="https://github.com/adwaiy2912/ASTER" target="_blank">
+                  <div class="projects__card whiteShade">
+                     <img
+                        class="projects__img"
+                        src="img/project_ASTER.png"
+                        alt="Project image"
+                        height="200"
+                        width="300"
+                     />
+                     <h2 class="projects__title">ASTER</h2>
+                     <p class="projects__details">
+                        This menu-driven inventory management system, named
+                        ASTER, made using Python and mySQL. It is designed for
+                        ease of use by individuals unfamiliar with inventory
+                        management. It streamlines essential tasks, particularly
+                        for businesses like bakeries, enabling swift and
+                        efficient operations.
+                     </p>
+                  </div>
+               </a>
             </div>
-        </section>
+         </section>
 
-        <section class="main__sec section" id="contact">
-            <h1 class="sec__h1">
-                Contact Me
-            </h1>
+         <section class="main__sec section" id="contact">
+            <h1 class="sec__h1">Contact Me</h1>
             <p class="contact__p">
-                Got any questions? Or simply want to engage in a chat.
-                <br>
-                Hit me a message, and let's connect!
+               Got any questions? Or simply want to engage in a chat.
+               <br />
+               Hit me a message, and let's connect!
             </p>
-            <form action="#" method="post" class="contact__form whiteShade" id="contact__form">
-                <div class="contact__form--div">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="sender-name" placeholder="Enter your name" autocomplete="on" class="contact__form--input" required>
-                </div>
-                <div class="contact__form--div">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="sender-email" placeholder="Enter your name" autocomplete="on" class="contact__form--input" required>
-                </div>
-                <div class="contact__form--div">
-                    <label for="message">Message</label>
-                    <textarea id="message" cols="30" rows="10" placeholder="Type your message here" name="message" autocomplete="off" class="contact__form--input" required></textarea> 
-                </div>
-                <div class="contact__form--captchaContainer">
-                    <div class="g-recaptcha contact__form--captcha" data-sitekey="6LcdDlApAAAAAOV9OlJZWt60TpbHgtHFiDsBLi_A"></div>
-                </div>
-                <div class="contact__form--buttonContainer">
-                    <input type="submit" value="Send Message" id="submit__btn" class="contact__form--submit contact__form--button">
-                    <input type="reset" value="Reset" class="contact__form--reset contact__form--button">
-                </div>
+            <form
+               action="#"
+               method="post"
+               class="contact__form whiteShade"
+               id="contact__form"
+            >
+               <div class="contact__form--div">
+                  <label for="name">Name</label>
+                  <input
+                     type="text"
+                     id="name"
+                     name="sender-name"
+                     placeholder="Enter your name"
+                     autocomplete="on"
+                     class="contact__form--input"
+                     required
+                  />
+               </div>
+               <div class="contact__form--div">
+                  <label for="email">Email</label>
+                  <input
+                     type="email"
+                     id="email"
+                     name="sender-email"
+                     placeholder="Enter your name"
+                     autocomplete="on"
+                     class="contact__form--input"
+                     required
+                  />
+               </div>
+               <div class="contact__form--div">
+                  <label for="message">Message</label>
+                  <textarea
+                     id="message"
+                     cols="30"
+                     rows="10"
+                     placeholder="Type your message here"
+                     name="message"
+                     autocomplete="off"
+                     class="contact__form--input"
+                     required
+                  ></textarea>
+               </div>
+               <div class="contact__form--captchaContainer">
+                  <div
+                     class="g-recaptcha contact__form--captcha"
+                     data-sitekey="6LcdDlApAAAAAOV9OlJZWt60TpbHgtHFiDsBLi_A"
+                  ></div>
+               </div>
+               <div class="contact__form--buttonContainer">
+                  <input
+                     type="submit"
+                     value="Send Message"
+                     id="submit__btn"
+                     class="contact__form--submit contact__form--button"
+                  />
+                  <input
+                     type="reset"
+                     value="Reset"
+                     class="contact__form--reset contact__form--button"
+                  />
+               </div>
             </form>
-        </section>
-    </main>
+         </section>
+      </main>
 
-    <footer id="mainFooter">
-        <ul class="footer__ul">
+      <footer id="mainFooter">
+         <ul class="footer__ul">
             <li class="footer__li">
-                <a href="https://www.linkedin.com/in/adwaiy-singh/" target="_blank">
-                    <img src="img/linkedin.png" alt="LeetCode" height="25" width="25" class="footer__icon">
-                </a>
+               <a
+                  href="https://www.linkedin.com/in/adwaiy-singh/"
+                  target="_blank"
+               >
+                  <img
+                     src="img/linkedin.png"
+                     alt="LeetCode"
+                     height="25"
+                     width="25"
+                     class="footer__icon"
+                  />
+               </a>
             </li>
             <li class="footer__li">
-                <a href="https://github.com/adwaiy2912" target="_blank">
-                    <img src="img/github.png" alt="GitHub" height="25" width="25" class="footer__icon">
-                </a>
+               <a href="https://github.com/adwaiy2912" target="_blank">
+                  <img
+                     src="img/github.png"
+                     alt="GitHub"
+                     height="25"
+                     width="25"
+                     class="footer__icon"
+                  />
+               </a>
             </li>
             <li class="footer__li">
-                <a href="https://leetcode.com/adwaiy2913/" target="_blank">
-                    <img src="img/leetcode.png" alt="LeetCode" height="25" width="25" class="footer__icon">
-                </a>
+               <a href="https://leetcode.com/adwaiy2913/" target="_blank">
+                  <img
+                     src="img/leetcode.png"
+                     alt="LeetCode"
+                     height="25"
+                     width="25"
+                     class="footer__icon"
+                  />
+               </a>
             </li>
             <li class="footer__li">
-                <a href="mailto:adwaiysss@gmail.com" target="_blank">
-                    <img src="img/mail.png" alt="Mail" height="25" width="25" class="footer__icon">
-                </a>
+               <a href="mailto:adwaiysss@gmail.com" target="_blank">
+                  <img
+                     src="img/mail.png"
+                     alt="Mail"
+                     height="25"
+                     width="25"
+                     class="footer__icon"
+                  />
+               </a>
             </li>
             <li class="footer__li">
-                <a href="https://www.facebook.com/adwaiy.singh" target="_blank">
-                    <img src="img/facebook.png" alt="Facebook" height="25" width="25" class="footer__icon">
-                </a>
+               <a href="https://www.facebook.com/adwaiy.singh" target="_blank">
+                  <img
+                     src="img/facebook.png"
+                     alt="Facebook"
+                     height="25"
+                     width="25"
+                     class="footer__icon"
+                  />
+               </a>
             </li>
-        </ul>
-        <p class="footer__p">
+         </ul>
+         <p class="footer__p">
             <span class="nowrap">Copyright &copy; <span id="year"></span></span>
             <span class="nowrap">Adwaiy Singh</span>
             <span class="translucent"> | </span>
             <span class="nowrap">All rights reserved</span>
-        </p>
-    </footer>
-</body>
+         </p>
+      </footer>
+   </body>
 </html>

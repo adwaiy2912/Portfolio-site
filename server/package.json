@@ -1,21 +1,21 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "Server for handling backend logic and API endpoints for my portfolio website.",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "(https://github.com/username/repo.git) https://github.com/adwaiy2912/portfolio"
-  },
-  "author": "Adwaiy Singh",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "node-fetch": "^3.3.2"
-  }
+   "name": "server",
+   "version": "1.0.0",
+   "description": "Server for handling backend logic and API endpoints for my portfolio website.",
+   "main": "server.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node server.js"
+   },
+   "repository": {
+      "type": "git",
+      "url": "(https://github.com/username/repo.git) https://github.com/adwaiy2912/portfolio"
+   },
+   "author": "Adwaiy Singh",
+   "license": "ISC",
+   "dependencies": {
+      "cors": "^2.8.5",
+      "express": "^4.18.2",
+      "node-fetch": "^3.3.2"
+   }
 }
