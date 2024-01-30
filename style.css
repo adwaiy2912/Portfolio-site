@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Nunito+Sans:opsz@6..12&family=Roboto&display=swap");
 
 /* || RESET */
 * {
@@ -16,7 +16,9 @@ img {
 /* || VARIABLES */
 :root {
    /* FONTS */
-   --FF: "Courier New", Courier, monospace;
+   --FF-HEAD: "Nunito Sans", "Times New Roman", Georgia, Helvetica;
+   --FF-MAIN: "Inter", "Roboto", sans-serif, monospace;
+
    --HEAD-FS: clamp(1.25rem, 5vw, 2.5rem);
    --MAIN-FS: clamp(0.9rem, 2vw, 1.1rem);
    --INTRO-FS: clamp(1.75rem, 10vw, 4.25rem);
@@ -106,6 +108,11 @@ img {
    background-clip: text;
 }
 
+.increaseSpacing {
+   letter-spacing: 0.025em;
+   word-spacing: 0.025em;
+}
+
 .blurBg {
    backdrop-filter: blur(20px);
    -webkit-backdrop-filter: blur(20px);
@@ -139,7 +146,7 @@ img {
 html {
    scroll-behavior: smooth;
 
-   font-family: var(--FF);
+   font-family: var(--FF-HEAD);
    color: var(--MAIN1-COLOR);
 }
 
@@ -363,8 +370,6 @@ main {
 .home__h2 {
    font-size: var(--INTRO-FS);
    margin: 0rem 1rem;
-   line-height: 1em;
-   letter-spacing: -0.02em;
 }
 
 .home__h1::after {
@@ -398,6 +403,7 @@ main {
    height: var(--BUT-DIM);
    width: calc(3 * var(--BUT-DIM));
    margin-top: var(--HOME-BUT-MARGIN);
+   font-family: var(--FF-MAIN);
    font-size: calc(1.25 * var(--MAIN-FS));
    color: var(--MAIN2-COLOR);
    border: 2px solid var(--MAIN2-COLOR);
@@ -451,6 +457,7 @@ main {
 }
 
 .about__p {
+   font-family: var(--FF-MAIN);
    font-size: var(--MAIN-FS);
    line-height: 1.5em;
    text-align: left;
@@ -528,6 +535,7 @@ main {
 
 .skills__fig figcaption {
    padding-top: var(--SKILL-FIGCAP-PAD);
+   font-family: var(--FF-MAIN);
    font-size: var(--MAIN-FS);
    font-weight: bold;
 }
@@ -578,6 +586,7 @@ main {
 
 .projects__details {
    margin-top: 0.75em;
+   font-family: var(--FF-MAIN);
    font-size: var(--MAIN-FS);
    color: var(--MAIN1-COLOR);
    line-height: 1.4em;
@@ -645,9 +654,10 @@ main {
 }
 
 .contact__form--button {
+   margin: 0px 5px;
    padding: 5px;
+   font-family: var(--FF-MAIN);
    font-size: var(--MAIN-FS);
-   font-weight: 500;
    color: var(--COMPLEMENTARY-COLOR);
    background-color: var(--MAIN1-COLOR);
    border: var(--CONTACT-BORDER);
@@ -667,6 +677,35 @@ main {
    background-color: transparent;
    color: var(--MAIN1-COLOR);
    transition: 0.4s;
+}
+
+.contact__form--sendMessage {
+   display: none;
+   width: 66%;
+   position: relative;
+}
+
+.contact__form--sendMessage::after {
+   content: "";
+   position: absolute;
+   width: 16px;
+   height: 16px;
+   inset: 0;
+   margin: auto;
+   border: 4px solid transparent;
+   border-top-color: var(--COMPLEMENTARY-COLOR);
+   border-radius: 50%;
+   animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+   from {
+      transform: rotate(0turn);
+   }
+
+   to {
+      transform: rotate(1turn);
+   }
 }
 
 footer {

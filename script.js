@@ -161,82 +161,57 @@ document.addEventListener("DOMContentLoaded", () => {
    year.textContent = thisYear;
 });
 
-/*
-const toggleMenu = () => {
-    // only for mobile screen
-    if (!window.matchMedia('(hover: none)').matches) { return; }
-
-    const headerButton = document.querySelector(".header__menu--button");
-    const headerNav = document.querySelector(".header__nav");
-    const headerIcon = document.querySelector(".header__menu--icon");
-
-    if (headerButton.classList.contains('active')) {
-        // If menu is currently open, close it
-        headerNav.style.display = 'none';
-        headerIcon.style.transform = '';
-        headerButton.classList.remove('active');
-    } else {
-        // If menu is currently closed, open it
-        headerNav.style.display = 'block';
-        headerIcon.style.transform = 'transparent';
-        headerButton.classList.add('active');
-    }
-}
-
-const checkToggle = () => {
-    if (!window.matchMedia('(hover: none)').matches) { return; }
-
-    const headerButton = document.querySelector(".header__menu--button");
-    const headerNav = document.querySelector(".header__nav");
-    const headerIcon = document.querySelector(".header__menu--icon");
-
-    if (headerButton.classList.contains('active')) {
-        headerNav.style.display = 'none';
-        headerIcon.style.transform = '';
-        headerButton.classList.remove('active');
-    }
-}
-*/
-
 // add reCAPTCHA check to form; set default state after submission; forward message to gmail
 const form = document.getElementById("contact__form");
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
    e.preventDefault();
 
-   const fd = new FormData(e.target);
-   const params = new URLSearchParams(fd);
-   const url = "https://slug-cummerbund.cyclic.app/upload";
+   document.querySelector(".contact__form--submit").style.display = "none";
+   document.querySelector(".contact__form--sendMessage").style.display =
+      "block";
 
-   fetch(url, {
-      method: "POST",
-      body: params,
-   })
-      .then((res) => res.json())
-      .then((data) => {
-         if (data.captchaSuccess) {
-            const serviceID = "service_7uoc47m";
-            const templateID = "template_2d9if46";
-            const parameters = {
-               name: document.getElementById("name").value,
-               email: document.getElementById("email").value,
-               message: document.getElementById("message").value,
-            };
+   try {
+      const fd = new FormData(e.target);
+      const params = new URLSearchParams(fd);
+      const url = "https://slug-cummerbund.cyclic.app/upload";
 
-            emailjs
-               .send(serviceID, templateID, parameters)
-               .then((res) => {
-                  // Clear form fields and reset reCAPTCHA
-                  document.getElementById("name").value = "";
-                  document.getElementById("email").value = "";
-                  document.getElementById("message").value = "";
-                  grecaptcha.reset();
+      const response = await fetch(url, {
+         method: "POST",
+         body: params,
+      });
 
-                  alert("Message sent successfully!");
-               })
-               .catch((err) => alert(err));
-         } else {
-            alert("CAPTCHA incomplete!");
-         }
-      })
-      .catch((err) => alert(err));
+      const data = await response.json();
+
+      if (data.captchaSuccess) {
+         const serviceID = "service_7uoc47m";
+         const templateID = "template_2d9if46";
+         const parameters = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            message: document.getElementById("message").value,
+         };
+
+         const emailResponse = await emailjs.send(
+            serviceID,
+            templateID,
+            parameters
+         );
+
+         // Clear form fields and reset reCAPTCHA
+         document.getElementById("name").value = "";
+         document.getElementById("email").value = "";
+         document.getElementById("message").value = "";
+         grecaptcha.reset();
+
+         alert("Message sent successfully!");
+      } else {
+         alert("CAPTCHA incomplete!");
+      }
+   } catch (err) {
+      alert(err);
+   } finally {
+      document.querySelector(".contact__form--submit").style.display = "block";
+      document.querySelector(".contact__form--sendMessage").style.display =
+         "none";
+   }
 });
