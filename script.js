@@ -1,10 +1,11 @@
-// get header height and add it to main top margins
+// get header height and add it to all main section top padding
 document.addEventListener("DOMContentLoaded", () => {
    const header = document.getElementById("mainHeader");
    const headerHeight = header.offsetHeight;
-
-   const mainContent = document.getElementById("mainContent");
-   mainContent.style.marginTop = headerHeight + "px";
+   const mainSec = document.querySelectorAll(".section");
+   mainSec.forEach((sec) => {
+      sec.style.paddingTop = headerHeight + "px";
+   });
 });
 
 // add right margin to logo -> aligns title
@@ -159,6 +160,45 @@ document.addEventListener("DOMContentLoaded", () => {
    const thisYear = new Date().getFullYear();
    year.setAttribute("datetime", thisYear);
    year.textContent = thisYear;
+});
+
+// scroll triggered animation
+document.addEventListener("DOMContentLoaded", () => {
+   const scrollTrigger = (selector, options = {}) => {
+      let els = document.querySelectorAll(selector);
+      els = Array.from(els);
+      els.forEach((el) => {
+         addObserver(el, options);
+      });
+   };
+   const addObserver = (el, options) => {
+      // Check if `IntersectionObserver` is supported
+      if (!("IntersectionObserver" in window)) {
+         if (options.cb) {
+            options.cb(el);
+         } else {
+            el.classList.add("active");
+         }
+         return;
+      }
+      let observer = new IntersectionObserver((entries, observer) => {
+         entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+               if (options.cb) {
+                  options.cb(el);
+               } else {
+                  entry.target.classList.add("active");
+               }
+               observer.unobserve(entry.target);
+            }
+         });
+      }, options);
+      observer.observe(el);
+   };
+
+   scrollTrigger(".scroll-reveal", {
+      rootMargin: "-200px",
+   });
 });
 
 // add reCAPTCHA check to form; set default state after submission; forward message to gmail
