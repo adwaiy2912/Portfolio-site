@@ -8,7 +8,7 @@ It's built using HTML, CSS, JavaScript, and ExpressJS, ensuring responsiveness a
 -  HTML: Used for structuring the content of the website.
 -  CSS: Employed for styling and layout design, ensuring an appealing user interface.
 -  JavaScript: Implemented for dynamic functionality and interactivity.
--  ExpressJS: Utilized for server-side scripting and routing.
+-  ExpressJS: Utilized for server-side scripting and routing of reCAPTCHA and Email forwarding.
 
 # APIs Used
 
