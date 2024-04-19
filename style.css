@@ -410,6 +410,7 @@ main {
    border: 2px solid var(--MAIN2-COLOR);
    border-radius: 4px;
    box-shadow: var(--HOME-BUT-SHADOW);
+   cursor: var(--CURSORIMG), auto;
 
    text-decoration: none;
    outline: none;
